@@ -108,7 +108,7 @@ export default function TodoPage() {
 
     useEffect(() => {
         loadTodos();
-    }, []);
+    }, [loadTodos]);
 
     const getStatusIcon = (status: string) => {
         return status === 'Done' ? 

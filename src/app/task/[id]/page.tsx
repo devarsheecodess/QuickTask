@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { ArrowLeft, Calendar, CheckCircle2, Clock, Tag, User, Edit3, Trash2, Check, RotateCcw } from 'lucide-react';
+import { ArrowLeft, Calendar, CheckCircle2, Clock, Tag } from 'lucide-react';
 import Header from "../../header";
 
 export default function TaskPage({ params }: { params: { id: string } }) {
@@ -14,7 +14,6 @@ export default function TaskPage({ params }: { params: { id: string } }) {
     const [todo, setTodo] = useState<Todo | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [isEditing, setIsEditing] = useState<boolean>(false);
-    const [editTask, setEditTask] = useState<string>('');
 
     useEffect(() => { 
         setLoading(true); 
