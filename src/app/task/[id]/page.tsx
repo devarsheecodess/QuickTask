@@ -31,27 +31,7 @@ export default function TaskPage({ params }: { params: { id: string } }) {
             console.error("No todos found in localStorage."); 
         } 
         setLoading(false); 
-    }, []);
-
-    const handleStatusToggle = () => {
-        if (!todo) return;
-        const newStatus = todo.status === 'Done' ? 'Pending' : 'Done';
-        setTodo({ ...todo, status: newStatus });
-    };
-
-    const handleSaveEdit = () => {
-        if (!todo || !editTask.trim()) return;
-        setTodo({ ...todo, task: editTask.trim() });
-        setIsEditing(false);
-    };
-
-    const handleDelete = () => {
-        if (confirm("Are you sure you want to delete this task?")) {
-            // In a real app, this would delete from storage and redirect
-            alert("Task deleted successfully!");
-            window.location.href = '/todo';
-        }
-    };
+    }, [params.id]);
 
     const getStatusBadge = (status: string) => {
         return status === 'Done' ? 
