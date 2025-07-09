@@ -16,13 +16,12 @@ export default function TodoPage() {
     const [editId, setEditId] = useState<number | null>(null);
     const [form, setForm] = useState({task: '', status: 'Pending' });
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setForm({ ...form, [name]: value });
     };
 
-    const addTask = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const addTask = () => {
         if (!form.task.trim()) return;
         
         try {
@@ -40,14 +39,6 @@ export default function TodoPage() {
         } catch (error) {
             console.error("Error adding task:", error);
         }
-    };
-
-    const loadTodos = () => {
-        setLoading(true);
-        const storedTodos = localStorage.getItem('todos');
-        const defaultTodos: Todo[] = storedTodos ? JSON.parse(storedTodos) : [];
-        setTodos(defaultTodos);
-        setLoading(false);
     };
 
     const startEditTask = (id: number) => {
@@ -107,8 +98,16 @@ export default function TodoPage() {
     };
 
     useEffect(() => {
+        const loadTodos = () => {
+            setLoading(true);
+            const storedTodos = localStorage.getItem('todos');
+            const defaultTodos: Todo[] = storedTodos ? JSON.parse(storedTodos) : [];
+            setTodos(defaultTodos);
+            setLoading(false);
+        };
+
         loadTodos();
-    }, [loadTodos]);
+    }, []);
 
     const getStatusIcon = (status: string) => {
         return status === 'Done' ? 
@@ -153,7 +152,7 @@ export default function TodoPage() {
                                                 if (editId !== null) {
                                                     saveEditedTask();
                                                 } else {
-                                                    addTask(e as any);
+                                                    
                                                 }
                                             }
                                         }}
@@ -161,7 +160,10 @@ export default function TodoPage() {
                                 </div>
                                 <div className="flex flex-col sm:flex-row gap-3">
                                     <button 
-                                        onClick={editId !== null ? saveEditedTask : (e) => addTask(e as any)}
+                                        onClick={() =>
+                                            editId !== null ? saveEditedTask() : addTask()
+                                        }
+
                                         className="flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
                                     >
                                         {editId !== null ? (
@@ -256,7 +258,9 @@ export default function TodoPage() {
                                                         View
                                                     </button>
                                                     <button
-                                                        onClick={() => {todo.status === 'Done' ? setUndo(todo.id) : setDone(todo.id)}}
+                                                        onClick={() =>
+                                                            todo.status === 'Done' ? setUndo(todo.id) : setDone(todo.id)
+                                                        }
                                                         className={`flex items-center gap-1 px-3 py-1.5 text-sm rounded-md transition-colors ${
                                                             todo.status === 'Done' 
                                                                 ? 'text-amber-600 hover:bg-amber-50' 
@@ -343,7 +347,9 @@ export default function TodoPage() {
                                                                     <Eye className="w-4 h-4" />
                                                                 </button>
                                                                 <button
-                                                                    onClick={() => {todo.status === 'Done' ? setUndo(todo.id) : setDone(todo.id)}}
+                                                                    onClick={() => (
+                                                                        todo.status === 'Done' ? setUndo(todo.id) : setDone(todo.id)
+                                                                    )}
                                                                     className={`p-1 rounded transition-colors ${
                                                                         todo.status === 'Done' 
                                                                             ? 'text-amber-600 hover:text-amber-900 hover:bg-amber-50' 

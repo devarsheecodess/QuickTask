@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,24 +21,24 @@ export default function Header() {
                     {/* Desktop Navigation */}
                     <ul className="hidden md:flex items-center space-x-2">
                         <li>
-                            <a
+                            <Link
                                 href="/"
                                 className={`relative group text-gray-200 hover:text-violet-600 px-6 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 overflow-hidden ${pathname === '/' ? 'text-violet-500' : ''}`}
                             >
                                 <span className="absolute inset-0 bg-gradient-to-r from-violet-500/10 to-blue-500/10 rounded-2xl scale-0 group-hover:scale-100 transition-transform duration-300"></span>
                                 <span className="relative">Home</span>
                                 <span className="absolute bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-violet-500 to-blue-500 group-hover:w-4 group-hover:left-1/2 group-hover:-translate-x-1/2 transition-all duration-300"></span>
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a
+                            <Link
                                 href="/about"
                                 className={`relative group text-gray-200 hover:text-violet-600 px-6 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 overflow-hidden ${pathname === '/about' ? 'text-violet-500' : ''}`}
                             >
                                 <span className="absolute inset-0 bg-gradient-to-r from-violet-500/10 to-blue-500/10 rounded-2xl scale-0 group-hover:scale-100 transition-transform duration-300"></span>
                                 <span className="relative">About</span>
                                 <span className="absolute bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-violet-500 to-blue-500 group-hover:w-4 group-hover:left-1/2 group-hover:-translate-x-1/2 transition-all duration-300"></span>
-                            </a>
+                            </Link>
                         </li>
                         <li className="ml-4">
                             <button onClick={()=>window.location.href='/todo'} className="relative group cursor-pointer bg-gradient-to-r from-violet-600 to-blue-600 text-white px-6 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-violet-500/25 hover:scale-105 active:scale-95">
@@ -66,18 +67,18 @@ export default function Header() {
                     <div className="md:hidden absolute top-full left-0 right-0 bg-white/10 backdrop-blur-xl border-b border-white/20 shadow-lg shadow-black/5">
                         <ul className="flex flex-col p-6 space-y-4">
                             <li>
-                                <a href="/" className="relative group text-gray-200 hover:text-violet-600 px-6 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 overflow-hidden block">
+                                <Link href="/" className="relative group text-gray-200 hover:text-violet-600 px-6 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 overflow-hidden block">
                                     <span className="absolute inset-0 bg-gradient-to-r from-violet-500/10 to-blue-500/10 rounded-2xl scale-0 group-hover:scale-100 transition-transform duration-300"></span>
                                     <span className="relative">Home</span>
                                     <span className="absolute bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-violet-500 to-blue-500 group-hover:w-4 group-hover:left-1/2 group-hover:-translate-x-1/2 transition-all duration-300"></span>
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="/about" className="relative group text-gray-200 hover:text-violet-600 px-6 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 overflow-hidden block">
+                                <Link href="/about" className="relative group text-gray-200 hover:text-violet-600 px-6 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 overflow-hidden block">
                                     <span className="absolute inset-0 bg-gradient-to-r from-violet-500/10 to-blue-500/10 rounded-2xl scale-0 group-hover:scale-100 transition-transform duration-300"></span>
                                     <span className="relative">About</span>
                                     <span className="absolute bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-violet-500 to-blue-500 group-hover:w-4 group-hover:left-1/2 group-hover:-translate-x-1/2 transition-all duration-300"></span>
-                                </a>
+                                </Link>
                             </li>
                             <li>
                                 <button onClick={()=>window.location.href='/todo'} className="relative group cursor-pointer bg-gradient-to-r from-violet-600 to-blue-600 text-white px-6 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-violet-500/25 hover:scale-105 active:scale-95 w-full">
